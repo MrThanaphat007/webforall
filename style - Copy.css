@@ -1,0 +1,412 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+}
+
+/* --- สไตล์หน้าล็อกอิน (index.html) --- */
+body:not(.dashboard-body) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-wrapper {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.login-box {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 420px;
+}
+
+h2 {
+    color: #0f172a; /* ปรับจากดำอมเทา เป็นน้ำเงินเข้มโมเดิร์น */
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    color: #64748b; /* ปรับจากเทาหม่น เป็นฟ้าอมเทาซอฟท์ๆ */
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334155; /* ปรับให้ดูสบายตาขึ้น */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #333333;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #000000;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 71, 126, 0.3);
+    border-radius: 50px;
+    font-size: 13px;
+    color: #ff477e;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    z-index: 9999;
+}
+
+.music-icon {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.play-button,
+.mute-button {
+    background: #ff477e;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.play-button:hover,
+.mute-button:hover {
+    background: #d63384;
+    transform: translateY(-1px);
+}
+
+.mute-button {
+    min-width: 90px;
+}
+
+.mute-button:hover {
+    background: #d63384;
+}
+
+.error-text {
+    color: #e11d48; /* ปรับจากส้มอมน้ำตาล เป็นแดงกุหลาบโมเดิร์น */
+    background-color: #fff1f2; /* ปรับพื้นหลังให้เข้ากัน */
+    border: 1px solid #ffe4e6;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+.success-text {
+    color: #047857;
+    background-color: #d1fae5;
+    border-color: #a7f3d0;
+}
+
+.auth-footer {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #4b5563;
+    text-align: center;
+}
+
+.auth-footer a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- สไตล์หน้าหลักแดชบอร์ด (page.html) --- */
+.dashboard-body {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
+    color: #1f2937;
+}
+
+.dashboard-body .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    padding: 32px 24px;
+    background: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 4px 0 30px rgba(15, 23, 42, 0.16);
+}
+
+.sidebar-brand h3 {
+    margin-bottom: 1.8rem;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-item {
+    display: block;
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.88);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+}
+
+.sidebar-footer .btn-logout {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #000000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.sidebar-footer .btn-logout:hover {
+    transform: translateY(-1px);
+    background: #eef2ff;
+}
+
+.main-wrapper {
+    margin-left: 280px;
+    padding: 28px 32px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 28px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+    margin-bottom: 28px;
+    backdrop-filter: blur(10px);
+}
+
+.nav-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.nav-user {
+    font-size: 15px;
+    color: #4b5563;
+}
+
+.content-body {
+    display: grid;
+    gap: 24px;
+}
+
+.welcome-card {
+    background: linear-gradient(135deg, #ffffff 0%, #eef2ff 100%);
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.welcome-card h1 {
+    font-size: 28px;
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+
+.welcome-card p {
+    font-size: 16px;
+    color: #4b5563;
+    max-width: 770px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 26px;
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+}
+
+.stat-title {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 14px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.text-warning {
+    color: #d97706; /* ปรับจากส้มอมน้ำตาล เป็นสีทองอำบันสว่างชัดเจน */
+}
+
+@media (max-width: 1024px) {
+    .main-wrapper {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .dashboard-body .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 18px;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .menu-item {
+        flex: 1 1 45%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.music-controls {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: fixed;      
+    bottom: 20px;          
+    left: 50%;             
+    transform: translateX(-50%); 
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.9); 
+    border: 1px solid rgba(255, 71, 126, 0.3);
+    border-radius: 50px;
+    font-size: 13px;
+    color: #ff477e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    z-index: 9999;        
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.music-icon {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
